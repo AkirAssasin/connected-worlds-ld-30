@@ -64,19 +64,40 @@ void setup()
   size(1420, 799);
   PFont courier = loadFont("courier");
   textFont(courier, 14);  
+  noStroke();
 }
 
 void draw(){  
   background(255);
   if (timeleft > 1) {
     timeleft -= 1;
-    translate(width/2,height/2);
+    translate(1420/2,799/2);
+    fill(0);
+    text("You found an ancient device that has access to other worlds.",-230,-210);
+    text("The world's greatest pianist volunteers to take part in your experiment about parellel worlds.",-380,-190);
+    text("Click on the digits to cycle between 1 - 5.",-170,-170);
+    text("Green means that the certain body part will be succesfully warped.",-250,-150);
+    fill(180);
+    rect(-150,-80,30,799);
+    rect(120,-80,30,799);
     fill(255,249,166);
-    rect(-110,-130,220,height);
+    beginShape();
+    vertex(-110,-30);
+    vertex(-160,-80);
+    vertex(-110,-130);
+    vertex(110,-130);
+    vertex(160,-80);
+    vertex(110,-30);
+    vertex(110,799);
+    vertex(-110,799);
+    vertex(-110,-30);
+    endShape();
+    fill(205,199,116);
+    rect(-((60*frameRate)/(frameRate)),-120,60*frameRate/(frameRate/2),10);
     fill(50);
     rect(-((60*frameRate)/(frameRate)),-120,timeleft/(frameRate/2),10);
     fill(0);
-    rect(-100,-100,200,height);
+    rect(-100,-100,200,799);
   
     if (choice[0] == answer[0]) 
     {
@@ -204,9 +225,8 @@ void draw(){
     {
         reveal += 1;
     }
-    translate(width/2,height/2);
+    translate(1420/2,799/2);
     fill(0);
-    line(-10,-270,-10,-250+(reveal*2.5));
     text("Status of test subject",0,-250);
     if (reveal > 20) {
         if (choice[0] == answer[0]) 
@@ -372,7 +392,7 @@ void draw(){
 
 void mouseClicked() {
     if (timeleft > 0) {
-    if(dist((width/2 - 7),(height/2 - 50), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 - 50), mouseX, mouseY) < 7) {
         click.play();
     
         if (choice[0] < 4) {
@@ -392,7 +412,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 - 10), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 - 10), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[1] < 4) {
@@ -412,7 +432,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 30), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 30), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[2] < 4) {
@@ -432,7 +452,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 70), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 70), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[3] < 4) {
@@ -452,7 +472,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 110), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 110), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[4] < 4) {
@@ -472,7 +492,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 150), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 150), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[5] < 4) {
@@ -492,7 +512,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 190), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 190), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[6] < 4) {
@@ -512,7 +532,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 230), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 230), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[7] < 4) {
@@ -532,7 +552,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 270), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 270), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[8] < 4) {
@@ -552,7 +572,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 310), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 310), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[9] < 4) {
@@ -572,7 +592,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 350), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 350), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[10] < 4) {
@@ -592,7 +612,7 @@ void mouseClicked() {
         }
     }
     
-    if(dist((width/2 - 7),(height/2 + 390), mouseX, mouseY) < 7) {
+    if(dist((1420/2 - 7),(799/2 + 390), mouseX, mouseY) < 7) {
         click.play();
         
         if (choice[11] < 4) {
