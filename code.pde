@@ -50,10 +50,6 @@ var click = new Howl({
   urls: ['sound/click.mp3', 'sound/click.ogg']
 });
 
-var bgm = new Howl({
-  urls: ['sound/bgm.mp3', 'sound/bgm.ogg']
-});
-
 var happy = new Howl({
   urls: ['sound/happy.mp3', 'sound/happy.ogg']
 });
@@ -66,9 +62,10 @@ int timeleft = 60*frameRate;
 
 int reveal;
 
+int testsubject = round(random(10000));
+
 void setup()
 {
-  bgm.play();
   size(1420, 799);
   PFont courier = loadFont("courier");
   textFont(courier, 14);  
@@ -94,19 +91,19 @@ void draw(){
     text("Sent on " + day() + "-" + month() + "-" + year(),228,-45);
     fill(0);
     text("Dear Mad Scientist/Archeologist",228,-30);
-    text("I heard that you discovered something awesome.",228,-15);
-    text("Can I participate in whatever you're doing? Seems",228,0);
-    text("fun! I'll bring my piano along. Research can be",228,15);
-    text("boring sometimes...",228,30);
-    text("World's Greatest Pianist",450,160);
+    text("Today's the big day where we will test this device!",228,-5);
+    text("I'll be there at " + hour() + ":00. I can't wait to visit the",228,10);
+    text("parallel world that you discovered! Well then,",228,25);
+    text("I'll see you later.",228,40);
+    text("Test Subject #" + testsubject,450,170);
     fill(255);
     text("Project Syskevis",-370,190);
     text("έργο συσκευής",570,190);
     text("You found an ancient device that has access to other",-670,-55);
     text("worlds. Click on the digits to cycle between 1 - 5.",-670,-35);
     text("Green means that the certain body part will be",-670,-15);
-    text("successfully warped. Press the green button if you",-670,5);
-    text("feel confident.",-670,25);
+    text("successfully warped. Press the green button to warp",-670,5);
+    text("immediately.",-670,25);
     fill(180);
     rect(-150,-80,30,799);
     rect(120,-80,30,799);
@@ -253,7 +250,6 @@ void draw(){
   }
   else
   {
-    bgm.stop();
     if (reveal < 500) 
     {
         reveal += 1;
@@ -400,36 +396,49 @@ void draw(){
             if (reveal < 302) {
                 happy.play();
             }
-            text("Alive and kickin'.",-200,0);
+            text("Alive and kickin'.",-280,0);
             if (choice[4] == answer[4] && choice[5] == answer[5] && choice[6] == answer[6] && choice[7] == answer[7] && choice[8] == answer[8] && choice[9] == answer[9] && choice[10] == answer[10] && choice[11] == answer[11]) 
             {
-                text("Your discoveries of",-200,14);
-                text("a parallel world will",-200,14);
-                text("shock mankind.",-200,28);
+                text("My invention to get to",-280,14);
+                text("a parallel world will",-280,14);
+                text("impress everybody!",-280,28);
             }
             else
             {
-                text("But he's probably",-200,14);
-                text("handicapped now.",-200,28);
-                text("Better not let the",-200,42);
-                text("cops know.",-200,56);
+                text("let's just clean these",-280,14);
+                text("extra limbs before",-280,28);
+                text("someone sees.",-280,42);
             }
         }
         else
         {
-            if (reveal < 302) {
+           if (reveal < 302) {
                 sad.play();
             }
-            text("You just murdered",-200,14);
-            text("the world's greatest",-200,28);
-            text("pianist with your",-200,42);
-            text("parallel world-",-200,56);
-            text("travelling device.",-200,70);
+           if (choice[0] == answer[0] || choice[1] == answer[1] || choice[2] == answer[2] || choice[3] == answer[3] || choice[4] == answer[4] || choice[5] == answer[5] || choice[6] == answer[6] || choice[7] == answer[7] || choice[8] == answer[8] || choice[9] == answer[9] || choice[10] == answer[10] || choice[11] == answer[11]) {
+                if (choice[1] == answer[1] && choice[3] == answer[3] && choice[9] == answer[9] && choice[11] == answer[11]) {
+                    text("What a waste of time.",-280,14);
+                }
+                else
+                {
+                    text("Test subject #" + testsubject + " died with",-280,14);
+                    text("some of his body parts lost",-280,28);
+                    text("in another world. Well,",-280,42);
+                    text("we have tons of other test",-280,56);
+                    text("subjects to experiment with...",-280,70);
+                }
+            }
+            else
+            {
+                text("Let's just say he died",-280,14);
+                text(" of shock because my",-280,28);
+                text("discovery is too awesome.",-280,42);
+            }
         }
     }
     
     if (reveal > 450) {
-        text("Click to try again",-200,120);
+        text("Click to try again",-280,120);
     }
   }
 }
@@ -439,7 +448,6 @@ void mouseClicked() {
     if(dist((1420/2 - 120),(799/2 - 80), mouseX, mouseY) < 10) {
         click.play();
         timeleft = 2;
-        bgm.stop();
     }
     
     if(dist((1420/2 - 7),(799/2 - 50), mouseX, mouseY) < 7) {
@@ -684,6 +692,11 @@ void mouseClicked() {
     }
     else
     {
+        if (reveal < 300) {
+            reveal = 300;
+        }
+        else
+        {
         choice = 
         {
             round(random(4)),
@@ -733,6 +746,6 @@ void mouseClicked() {
         reveal = 0;
         happy.stop();
         sad.stop();
-        bgm.play();
+        }
     }
 }
