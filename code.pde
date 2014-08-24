@@ -76,7 +76,7 @@ void setup()
 }
 
 void draw(){  
-  background(255);
+  background(255 - (reveal/2));
   if (timeleft > 1) {
     timeleft -= 1;
     
@@ -86,7 +86,19 @@ void draw(){
     rect(200,-100,500,300);
     fill(100,100,255);
     rect(-675,-75,450,250);
+    fill(255);
     rect(225,-75,450,250);
+    fill(100,100,255);
+    rect(225,-75,450,10);
+    fill(100);
+    text("Sent on " + day() + "-" + month() + "-" + year(),228,-45);
+    fill(0);
+    text("Dear Mad Scientist/Archeologist",228,-30);
+    text("I heard that you discovered something awesome.",228,-15);
+    text("Can I participate in whatever you're doing? Seems",228,0);
+    text("fun! I'll bring my piano along. Research can be",228,15);
+    text("boring sometimes...",228,30);
+    text("World's Greatest Pianist",450,160);
     fill(255);
     text("Project Syskevis",-370,190);
     text("έργο συσκευής",570,190);
@@ -95,8 +107,6 @@ void draw(){
     text("Green means that the certain body part will be",-670,-15);
     text("successfully warped. Press the green button if you",-670,5);
     text("feel confident.",-670,25);
-    fill(0);
-    text("The world's greatest pianist volunteers to take part in your experiment about parallel worlds.",-380,-210);
     fill(180);
     rect(-150,-80,30,799);
     rect(120,-80,30,799);
@@ -243,12 +253,13 @@ void draw(){
   }
   else
   {
+    bgm.stop();
     if (reveal < 500) 
     {
         reveal += 1;
     }
     translate(1420/2,799/2);
-    fill(0);
+    fill(reveal/2);
     rect(-10,-260,2,reveal*2.5);
     text("Status of test subject",0,-250);
     if (reveal > 20) {
