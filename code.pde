@@ -54,6 +54,14 @@ var bgm = new Howl({
   urls: ['sound/bgm.mp3', 'sound/bgm.ogg']
 });
 
+var happy = new Howl({
+  urls: ['sound/happy.mp3', 'sound/happy.ogg']
+});
+
+var sad = new Howl({
+  urls: ['sound/sad.mp3', 'sound/sad.ogg']
+});
+
 int timeleft = 60*frameRate;
 
 int reveal;
@@ -71,12 +79,24 @@ void draw(){
   background(255);
   if (timeleft > 1) {
     timeleft -= 1;
+    
     translate(1420/2,799/2);
+    fill(60);
+    rect(-700,-100,500,300);
+    rect(200,-100,500,300);
+    fill(100,100,255);
+    rect(-675,-75,450,250);
+    rect(225,-75,450,250);
+    fill(255);
+    text("Project Syskevis",-370,190);
+    text("έργο συσκευής",570,190);
+    text("You found an ancient device that has access to other",-670,-55);
+    text("worlds. Click on the digits to cycle between 1 - 5.",-670,-35);
+    text("Green means that the certain body part will be",-670,-15);
+    text("successfully warped. Press the green button if you",-670,5);
+    text("feel confident.",-670,25);
     fill(0);
-    text("You found an ancient device that has access to other worlds.",-230,-210);
-    text("The world's greatest pianist volunteers to take part in your experiment about parellel worlds.",-380,-190);
-    text("Click on the digits to cycle between 1 - 5.",-170,-170);
-    text("Green means that the certain body part will be succesfully warped.",-250,-150);
+    text("The world's greatest pianist volunteers to take part in your experiment about parallel worlds.",-380,-210);
     fill(180);
     rect(-150,-80,30,799);
     rect(120,-80,30,799);
@@ -96,6 +116,8 @@ void draw(){
     rect(-((60*frameRate)/(frameRate)),-120,60*frameRate/(frameRate/2),10);
     fill(50);
     rect(-((60*frameRate)/(frameRate)),-120,timeleft/(frameRate/2),10);
+    fill(0,100,0);
+    rect(-130,-90,20,20);
     fill(0);
     rect(-100,-100,200,799);
   
@@ -221,17 +243,18 @@ void draw(){
   }
   else
   {
-    if (reveal < 400) 
+    if (reveal < 500) 
     {
         reveal += 1;
     }
     translate(1420/2,799/2);
     fill(0);
+    rect(-10,-260,2,reveal*2.5);
     text("Status of test subject",0,-250);
     if (reveal > 20) {
         if (choice[0] == answer[0]) 
         {
-            text("Head in parellel world",0,-200);
+            text("Head in parallel world",0,-200);
         }
         else
         {
@@ -253,7 +276,7 @@ void draw(){
     if (reveal > 60) {
         if (choice[2] == answer[2]) 
         {
-            text("Trunk in parellel world",0,-100);
+            text("Trunk in parallel world",0,-100);
         }
         else
         {
@@ -275,7 +298,7 @@ void draw(){
     if (reveal > 100) {
         if (choice[4] == answer[4]) 
         {
-            text("Left arm in parellel world",0,0);
+            text("Left arm in parallel world",0,0);
         }
         else
         {
@@ -286,7 +309,7 @@ void draw(){
     if (reveal > 120) {
         if (choice[5] == answer[5]) 
         {
-            text("Left hand in parellel world",0,50);
+            text("Left hand in parallel world",0,50);
         }
         else
         {
@@ -297,7 +320,7 @@ void draw(){
     if (reveal > 140) {
         if (choice[6] == answer[6]) 
         {
-            text("Right arm in parellel world",0,100);
+            text("Right arm in parallel world",0,100);
         }
         else
         {
@@ -308,7 +331,7 @@ void draw(){
     if (reveal > 160) {
         if (choice[7] == answer[7]) 
         {
-            text("Right hand in parellel world",0,150);
+            text("Right hand in parallel world",0,150);
         }
         else
         {
@@ -319,7 +342,7 @@ void draw(){
     if (reveal > 180) {
         if (choice[8] == answer[8]) 
         {
-            text("Left leg in parellel world",0,200);
+            text("Left leg in parallel world",0,200);
         }
         else
         {
@@ -341,7 +364,7 @@ void draw(){
     if (reveal > 220) {
         if (choice[10] == answer[10]) 
         {
-            text("Right leg in parellel world",0,300);
+            text("Right leg in parallel world",0,300);
         }
         else
         {
@@ -363,11 +386,14 @@ void draw(){
     if (reveal > 300) {
         if (choice[0] == answer[0] && choice[1] == answer[1] && choice[2] == answer[2] && choice[3] == answer[3]) 
         {
+            if (reveal < 302) {
+                happy.play();
+            }
             text("Alive and kickin'.",-200,0);
             if (choice[4] == answer[4] && choice[5] == answer[5] && choice[6] == answer[6] && choice[7] == answer[7] && choice[8] == answer[8] && choice[9] == answer[9] && choice[10] == answer[10] && choice[11] == answer[11]) 
             {
                 text("Your discoveries of",-200,14);
-                text("a parellel world will",-200,14);
+                text("a parallel world will",-200,14);
                 text("shock mankind.",-200,28);
             }
             else
@@ -380,18 +406,31 @@ void draw(){
         }
         else
         {
+            if (reveal < 302) {
+                sad.play();
+            }
             text("You just murdered",-200,14);
             text("the world's greatest",-200,28);
             text("pianist with your",-200,42);
-            text("parellel world-",-200,56);
+            text("parallel world-",-200,56);
             text("travelling device.",-200,70);
         }
+    }
+    
+    if (reveal > 450) {
+        text("Click to try again",-200,120);
     }
   }
 }
 
 void mouseClicked() {
-    if (timeleft > 0) {
+    if (timeleft > 1) {
+    if(dist((1420/2 - 120),(799/2 - 80), mouseX, mouseY) < 10) {
+        click.play();
+        timeleft = 2;
+        bgm.stop();
+    }
+    
     if(dist((1420/2 - 7),(799/2 - 50), mouseX, mouseY) < 7) {
         click.play();
     
@@ -631,5 +670,58 @@ void mouseClicked() {
             choice[(linkedto[11])] = 0;
         }
     }
+    }
+    else
+    {
+        choice = 
+        {
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+        };
+        answer = 
+        {
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+            round(random(4)),
+        };
+        linkedto =
+        {
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+            round(random(11)),
+        };
+        timeleft = 60*frameRate;
+        reveal = 0;
+        happy.stop();
+        sad.stop();
+        bgm.play();
     }
 }
